@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<head>
+
+  <title>Login To Vaccine Map</title>
+    
+  <link rel="stylesheet" type="text/css" href="style.css">
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDoYLskJqIOa_iKVX3ot97zM1dWLxUABWY",
+    authDomain: "cvd-zone.firebaseapp.com",
+    databaseURL: "https://cvd-zone-default-rtdb.firebaseio.com",
+    projectId: "cvd-zone",
+    storageBucket: "cvd-zone.appspot.com",
+    messagingSenderId: "816503956573",
+    appId: "1:816503956573:web:4fac9c9c100ff012d859b4"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+</head>
+<body style = "  
+  top: 50%;
+  left: 50%;
+transform: translate(-50%, -50%);
+justify-content: center;
+background-color: #0084ff;
+color: #FFFFFF;
+font-size: 28px;
+position: absolute;
+">
+
+<link rel="stylesheet" href="style.css">
+
+<center >
+<p>Go To Your Home & Click the button to get your Location.</p>
+
+<p id="demo"></p>
+
+<button class="btn" style="vertical-align : middle"  onclick="getLocation()" >Use My Current Location<span> </span></button>
+
+<p></p>
+
+<label >Are You Vaccinated ? </label>
+<select >
+  <option id="select" value="Complete">Vaccinated</option>
+  <option id="select" value="half">1st Dose Completed</option>
+  <option id="select" value="no">Not Vaccinated</option>
+</select>
+
+  <p></p>
+
+  
+    <div class="input-field">
+    <label class="active" for="address">Enter Your Name Here:- </label>
+    <input style = "height : 20px" class="input_fields materialize-textarea" id="name" type="text"></input>
+    </div>
+    </br>
+
+    <button class="button" style="vertical-align : middle" onPress="" >Submit<span> </span></button>
+
+</center>
+
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  x.innerHTML = "Latitude: " + position.coords.latitude + 
+  "<br>Longitude: " + position.coords.longitude;
+}
+
+function datastore(){
+
+}
+
+
+
+function updateDatabase(){
+  var namesRef = database.ref('names/').set({
+  latitude : position.coords.latitude,
+  longitude : position.coords.longitude,
+  
+  })
+}
+
+</script>
+
+<script src="datamain.js"></script>
+<script src="user.js"></script>
+<script src="Datainp.js"></script>
+
+</body>
+</html>
